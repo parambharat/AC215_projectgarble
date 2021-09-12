@@ -5,7 +5,24 @@ AC215
 
 Project Organization
 ------------
-
+      .
+      ├── LICENSE
+      ├── Makefile
+      ├── README.md
+      ├── models
+      ├── notebooks
+      ├── references
+      ├── requirements.txt
+      ├── setup.py
+      ├── src
+      │   ├── __init__.py
+      │   └── build_features.py
+      ├── submissions
+      │   ├── milestone1_groupname
+      │   ├── milestone2_groupname
+      │   ├── milestone3_groupname
+      │   └── milestone4_groupname
+      └── test_project.py
 
 --------
 
