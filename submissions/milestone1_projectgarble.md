@@ -1,0 +1,56 @@
+# Project Proposal
+##Speech Information Explorer and Summarizer
+ 
+## Team Members
+
+- Ian Davenport: <iandavenport@g.harvard.edu>
+- Joseph Kim: <josephkim@g.harvard.edu>
+- Malla Reddy Adaboina: <maa0192@g.harvard.edu>
+- Ramanathan P: <rap940@g.harvard.edu>
+ 
+## Problem Definition
+
+Lots of long-form audio and text files exist with lots of useful information in them. It's too time and energy intensive, however, for an individual to go through each one to make sense of them all. We're looking to solve the challenge of making sense of long-form text or audio with less effort and time. 
+
+...
+ 
+## Proposed Solution
+
+Build an application that generates a condensed summary of the audio/text in 200 words or less.
+
+To achieve this, we will leverage pre-trained models to transcribe, segment, and summarize the audio. At a high level, the project would be a combination of two major components: speech-to-text models and text summarization techniques.
+ 
+## Project Scope
+ 
+- Monologue Speech
+- Extractive Summaries
+
+### Level 1
+
+Assume automatic transcript is available from an existing service
+Focus on segmentation, summarization, and extraction pipelines
+
+### Level 2
+Assume only audio file is available
+Focus on ASR, error correction, segmentation and summarization pipelines
+
+## Timeline and Components
+ 
+
+## Datasets and Models
+
+### Datasets
+
+- https://tensorflow.google.cn/datasets/catalog/tedlium?hl=zh-cn
+- https://github.com/zcgzcgzcg1/MediaSum
+- https://paperswithcode.com/dataset/dialogsum
+- https://podcastsdataset.byspotify.com/ [Need to request access)
+
+### Models
+
+- Transcription – Automatic Speech Recognition: [Wav2Vec](https://huggingface.co/transformers/model_doc/wav2vec2.html#wav2vec2)
+- Topic Segmentation: [TextTiling with BERT](https://arxiv.org/pdf/2106.12978.pdf)
+- Key phrase Identification: [KeyBert](https://github.com/MaartenGr/KeyBERT), [BertNER](https://huggingface.co/dslim/bert-base-NER)
+- Summarization:
+  - [Leveraging BERT for extractive summarization of lectures](https://paperswithcode.com/paper/leveraging-bert-for-extractive-text)
+  - https://arxiv.org/pdf/2004.06190.pdf
