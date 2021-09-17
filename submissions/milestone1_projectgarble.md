@@ -16,7 +16,9 @@ Lots of long-form audio and text files exist with lots of useful information in 
  
 ## Proposed Solution
 
-Build an application that generates a Summary of Speech (Lectures, Podcasts, News Reports, and other speeches and monologues). We could leverage pre-trained models to transcribe, segment, and summarize the audio. The project would allow us to design, develop, and deploy scalable pipelines that combine speech-to-text models with summarization techniques.
+Build an application that generates a condensed summary of the audio/text in 200 words or less.
+
+To achieve this, we will leverage pre-trained models to transcribe, segment, and summarize the audio. At a high level, the project would be a combination of two major components: speech-to-text models and text summarization techniques.
  
 ## Project Scope
  
