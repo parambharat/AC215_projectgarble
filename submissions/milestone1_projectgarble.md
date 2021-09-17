@@ -10,7 +10,7 @@
  
 ## Problem Definition
 
-Extract and summarize monologue audio to assist note-takers.
+Lots of long-form audio and text files exist with lots of useful information in them. It's too time and energy intensive, however, for an individual to go through each one to make sense of them all. We're looking to solve the challenge of making sense of long-form text or audio with less effort and time. 
 
 ...
  
