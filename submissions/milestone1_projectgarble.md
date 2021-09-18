@@ -57,8 +57,8 @@ To achieve extractive summarization, we intend to perform sentence segmentation 
  - deploy a quantized model on cloud infrastructure using docker and kubernetes.  
  
 ## References
- - [1].Edmundson, H.: New methods in automatic extracting. J. Assoc. Comput. Mach. 16(2), 264–285 (1969)
- - [2].Lloret, E., Palomar, M.: Text summarisation in progress: a literature review. Artif. Intell. Rev. 37(1), 1–41 (2011)
- - [3].Mani, I., Maybury, M.T.: Advances in Automatic Text Summarization. MIT, Cambridge (1999)
- - [4].Turner, J., Charniak, E.: Supervised and Unsupervised Learning for Sentence Compression. In: ACL, Michigan, Ann Arbor, USA. ACL, Stroudsburg, USA (2005)
- - [5].G PadmaPriya and K Duraiswamy. An approach for text summarization using deep learning algorithms. J Comput Sci, 10:1–9, 2014.
+1. Edmundson, H.: New methods in automatic extracting. J. Assoc. Comput. Mach. 16(2), 264–285 (1969)
+2. Lloret, E., Palomar, M.: Text summarisation in progress: a literature review. Artif. Intell. Rev. 37(1), 1–41 (2011)
+3. Mani, I., Maybury, M.T.: Advances in Automatic Text Summarization. MIT, Cambridge (1999)
+4. Turner, J., Charniak, E.: Supervised and Unsupervised Learning for Sentence Compression. In: ACL, Michigan, Ann Arbor, USA. ACL, Stroudsburg, USA (2005)
+5. G PadmaPriya and K Duraiswamy. An approach for text summarization using deep learning algorithms. J Comput Sci, 10:1–9, 2014.
