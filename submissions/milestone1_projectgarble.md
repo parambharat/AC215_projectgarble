@@ -15,12 +15,12 @@ Automatic speech summarization is a well studied method of spoken document under
 ## Problem Definition
 There is an abundance of text material available on the internet. Much of this text, however, provides more information than is needed. It is very difficult for human beings to manually summarize large documents of text. Therefore, a twofold problem is encountered. Searching for relevant documents through an overwhelming number of documents available, and absorbing a large quantity of relevant information. The goal of automatic text summarization is condensing the source text into a shorter version preserving its information content and overall meaning. A good summary system should reflect the diverse topics of the document while keeping redundancy to a minimum.
 
-The problem that we wish to solve is similar to the challenge laid out in 2021 Trec Podcasts Task. Our primary goal is to develop a set of tools that aid in assisted note taking for lecture talks and lectures. Therefore, we restrict the scope of this work to monologue documents with single speakers.
+The problem that we wish to solve is similar to the challenge laid out in [2021 Trec Podcasts Task](https://trecpodcasts.github.io/). Our primary goal is to develop a set of tools that aid in assisted note taking for lecture talks and lectures. Therefore, we restrict the scope of this work to monologue documents with single speakers.
 
 ## Proposed Solution
 We propose using state-of-art NLP models and techniques to do automatic speech summarization of transcripts. We plan to try two different summarization methods: extractive and abstractive. Extractive summarization methods select key sentences and phrases from the document and combine them into shorter forms. Abstractive summarization tries to understand the main content of the document and then explain them in clear natural language.
 
-For the abstractive summarization method, we intend to follow the method outlined in https://arxiv.org/abs/2004.02016 and model the data using a pre-trained hierarchical network. We’ll use their strategy of pre-training with news broadcast data and fine-tuning on talk descriptions to train our models for this task.
+For the abstractive summarization method, we intend to follow the method outlined in this [paper](https://arxiv.org/abs/2004.02016) and model the data using a pre-trained hierarchical network. We’ll use their strategy of pre-training with news broadcast data and fine-tuning on talk descriptions to train our models for this task.
 
 To achieve extractive summarization, we intend to perform sentence segmentation and topic segmentation by jointly training the hierarchical encoder for sentence tagging tasks. We wish to also explore entity extraction and keyphrase extraction and sentence selection methods to generate extractive summaries. 
  
