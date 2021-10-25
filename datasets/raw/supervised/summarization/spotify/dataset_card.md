@@ -65,164 +65,199 @@ task_ids:
 
 ## Dataset Description
 
-- **Homepage:** [Add homepage URL here if available (unless it's a GitHub repository)]()
-- **Repository:** [If the dataset is hosted on github or has a github homepage, add URL here]()
-- **Paper:** [If the dataset was introduced by a paper or there was a paper written describing the dataset, add URL here (landing page for Arxiv paper preferred)]()
-- **Leaderboard:** [If the dataset supports an active leaderboard, add link here]()
-- **Point of Contact:** [If known, name and email of at least one person the reader can contact for questions about the dataset.]()
+- **Homepage:** [Spotiyfy Home](https://podcastsdataset.byspotify.com)
+- **Repository:** [Spotify Dataset](https://podcastsdataset.byspotify.com)
+
+- **Point of Contact:** [Rosie Jones, Ben Carterette, Ann Clifton, Maria Eskevich, Gareth JF Jones, Jussi Karlgren, Aasish Pappu, Sravana Reddy, and Yongze Yu. "TREC 2020 Podcasts Track Overview." In the Twenty-Ninth Text REtrieval Conference Proceedings (TREC 2020). NIST Special Publication 1266. Ellen M. Voorhees and Angela Ellis (editors). 2021.
+ ]()
 
 ### Dataset Summary
 
-Briefly summarize the dataset, its intended use and the supported tasks. Give an overview of how and why the dataset was created. The summary should explicitly mention the languages present in the dataset (possibly in broad terms, e.g. *translations between several pairs of European languages*), and describe the domain, topic, or genre covered.
+The podcast dataset contains about 100k podcasts filtered to contain only documents which the creator tags as being in the English language, as well as by a language filter applied to the creator-provided title and description. We expect that there will be a small amount of multilingual content that may have slipped through these filters.
 
-### Supported Tasks and Leaderboards
+Episodes were sampled from both professional and amateur podcasts including episodes produced in a studio with dedicated equipment by trained professionals, as well as episodes self-published from a phone app — these vary in quality depending on professionalism and equipment of the creator.
 
-For each of the tasks tagged for this dataset, give a brief description of the tag, metrics, and suggested models (with a link to their HuggingFace implementation if available). Give a similar description of tasks that were not covered by the structured tag set (repace the `task-category-tag` with an appropriate `other:other-task-name`).
+The episodes represent a wide range of:
 
-- `task-category-tag`: The dataset can be used to train a model for [TASK NAME], which consists in [TASK DESCRIPTION]. Success on this task is typically measured by achieving a *high/low* [metric name](https://huggingface.co/metrics/metric_name). The ([model name](https://huggingface.co/model_name) or [model class](https://huggingface.co/transformers/model_doc/model_class.html)) model currently achieves the following score. *[IF A LEADERBOARD IS AVAILABLE]:* This task has an active leaderboard which can be found at [leaderboard url]() and ranks models based on [metric name](https://huggingface.co/metrics/metric_name) while also reporting [other metric name](https://huggingface.co/metrics/other_metric_name).
+Audio quality: we can expect professionally produced podcasts to have high audio quality, but there is significant variability in the amateur podcasts. We have included a basic popularity filter to remove most podcasts that are defective or noisy.
+Topics: the episodes represent a wide range of topics, both coarse- and fine-grained. These include lifestyle and culture, storytelling, sports and recreation, news, health, documentary, and commentary.
+Structural formats: podcasts are structured in a number of different ways. These include scripted and unscripted monologues, interviews, conversations, debate, and included clips of other non-speech audio material.
+
+
+
+Each of the 100,000 episodes in the dataset includes an audio file, a text transcript, and some associated metadata.
+
+Note that the data do not include listening data or other user or usage-related data.
+
+The main data are separated into three top-level directories:
+ 
+ 
+one for transcripts, one for RSS files, and one for audio data.
+Since the audio files are vastly larger than the metadata, and not all researchers will choose to work on the audio data, we make these available for separate download.
+The metadata can be found in a single csv file in the top-level directory.
+In addition there are various annotations for the podcast data in separate directories. 
+ 
+ 
+Audio directory:
+ 
+OGG format available for separate download
+Median duration of an episode ~ 31.6 minutes
+Estimated size: ~2 TB for entire audio data set
+ 
+ 
+Metadata:
+ 
+Extracted basic metadata file in TSV format with fields: show_uri, show_name, show_description, publisher, language, rss_link, episode_uri, episode_name, episode_description, duration
+ 
+Subdirectory for the episode RSS header files:
+ 
+~1000 words with additional fields of potential interest, not necessarily aligned for every episode: channel, title, description, author, link, copyright, language, image
+Estimated size: 145MB total for entire RSS set when compressed. 
+ 
+
+Subdirectory for transcripts: 
+ 
+JSON format
+Average length is just under 6000 words, ranging from a small number of extremely short episodes to up to 45,000 words. Two-thirds of the transcripts are between about 1,000 and about 10,000 words in length; about 1% or 1,000 episodes are very short trailers to advertise other content. 
+Estimated size: 12GB for entire transcript set.
+
+Subdirectory for OpenSmile audio features 
+
+eGeMAPS low level acoustic descriptors and functionals computed for overlapping 1.01s windows (75GB) saved in HDF5 format.
+
+Subdirectory for Yamnet audio events 
+
+1024-dimensional embedding vectors for overlapping 0.96s segments for the podcasts (400GB) and Yamnet event class scores (60GB), saved in HDF5 format.
+ 
+
+### Supported Tasks and Model Measurement
+
+The dataset can be used to train a model for Extractive and Abstractive summarization, which consists, select key sentences and phrases from the document and combine them into shorter forms and Abstractive summarization tries to understand the main content of the document and then explain them in clear natural language. Success on this task is typically measured by [Rouge Score](https://en.wikipedia.org/wiki/ROUGE_(metric)).
 
 ### Languages
 
-Provide a brief overview of the languages represented in the dataset. Describe relevant details about specifics of the language such as whether it is social media text, African American English,...
-
-When relevant, please provide [BCP-47 codes](https://tools.ietf.org/html/bcp47), which consist of a [primary language subtag](https://tools.ietf.org/html/bcp47#section-2.2.1), with a [script subtag](https://tools.ietf.org/html/bcp47#section-2.2.3) and/or [region subtag](https://tools.ietf.org/html/bcp47#section-2.2.4) if available.
+Datasets are limited to English as the primary language. 
 
 ## Dataset Structure
 
 ### Data Instances
 
-Provide an JSON-formatted example and brief description of a typical instance in the dataset. If available, provide a link to further examples.
 
 ```
-{
-  'example_field': ...,
-  ...
-}
+<data>
+    <items>
+        <item name="item1">item1abc</item>
+        <item name="item2">item2abc</item>
+    </items>
+</data>
 ```
 
-Provide any additional information that is not covered in the other sections about the data here. In particular describe any relationships between data points and if these relationships are made explicit.
 
 ### Data Fields
 
-List and describe the fields present in the dataset. Mention their data type, and whether they are used as input or output in any of the tasks the dataset currently supports. If the data has span indices, describe their attributes, such as whether they are at the character level or word level, whether they are contiguous or not, etc. If the datasets contains example IDs, state whether they have an inherent meaning, such as a mapping to other datasets or pointing to relationships between data points.
+item1 = Description
 
-- `example_field`: description of `example_field`
-
-Note that the descriptions can be initialized with the **Show Markdown Data Fields** output of the [tagging app](https://github.com/huggingface/datasets-tagging), you will then only need to refine the generated descriptions.
+item2 = Summary
 
 ### Data Splits
 
-Describe and name the splits in the dataset if there are more than one.
-
-Describe any criteria for splitting the data, if used. If their are differences between the splits (e.g. if the training annotations are machine-generated and the dev and test ones are created by humans, or if different numbers of annotators contributed to each example), describe them here.
-
-Provide the sizes of each split. As appropriate, provide any descriptive statistics for the features, such as average length.  For example:
+dataset splits into Train, Validation and Test datasets
 
 |                            | Tain   | Valid | Test |
 | -----                      | ------ | ----- | ---- |
-| Input Sentences            |        |       |      |
-| Average Sentence Length    |        |       |      |
+| Input Sentences            |  6465664   |    811702    |    808169  |
+| Average Sentence Length    |    82    |   82    |  82    |
 
 ## Dataset Creation
 
 ### Curation Rationale
 
-What need motivated the creation of this dataset? What are some of the reasons underlying the major choices involved in putting it together?
+[N/A]
 
 ### Source Data
 
-This section describes the source data (e.g. news text and headlines, social media posts, translated sentences,...)
+Tetadata and content of published podcast episodes
 
 #### Initial Data Collection and Normalization
 
-Describe the data collection process. Describe any criteria for data selection or filtering. List any key words or search terms used. If possible, include runtime information for the collection process.
-
-If data was collected from other pre-existing datasets, link to source here and to their [Hugging Face version](https://huggingface.co/datasets/dataset_name).
-
-If the data was modified or normalized after being collected (e.g. if the data is word-tokenized), describe the process and the tools used.
+[N/A]
 
 #### Who are the source language producers?
 
-State whether the data was produced by humans or machine generated. Describe the people or systems who originally created the data.
-
-If available, include self-reported demographic or identity information for the source data creators, but avoid inferring this information. Instead state that this information is unknown. See [Larson 2017](https://www.aclweb.org/anthology/W17-1601.pdf) for using identity categories as a variables, particularly gender.
-
-Describe the conditions under which the data was created (for example, if the producers were crowdworkers, state what platform was used, or if the data was found, what website the data was found on). If compensation was provided, include that information here.
-
-Describe other people represented or mentioned in the data. Where possible, link to references for the information.
+The previous Spoken Document Retrieval task at TREC: https://pdfs.semanticscholar.org/57ee/3a15088f2db36e07e3972e5dd9598b5284af.pdf
 
 ### Annotations
 
-If the dataset contains annotations which are not part of the initial data collection, describe them in the following paragraphs.
+[N/A]
 
 #### Annotation process
 
-If applicable, describe the annotation process and any tools used, or state otherwise. Describe the amount of data annotated, if not all. Describe or reference annotation guidelines provided to the annotators. If available, provide interannotator statistics. Describe any annotation validation processes.
+[N/A]
 
 #### Who are the annotators?
-
-If annotations were collected for the source data (such as class labels or syntactic parses), state whether the annotations were produced by humans or machine generated.
-
-Describe the people or systems who originally created the annotations and their selection criteria if applicable.
-
-If available, include self-reported demographic or identity information for the annotators, but avoid inferring this information. Instead state that this information is unknown. See [Larson 2017](https://www.aclweb.org/anthology/W17-1601.pdf) for using identity categories as a variables, particularly gender.
-
-Describe the conditions under which the data was annotated (for example, if the annotators were crowdworkers, state what platform was used, or if the data was found, what website the data was found on). If compensation was provided, include that information here.
+[N/A]
 
 ### Personal and Sensitive Information
-
-State whether the dataset uses identity categories and, if so, how the information is used. Describe where this information comes from (i.e. self-reporting, collecting from profiles, inferring, etc.). See [Larson 2017](https://www.aclweb.org/anthology/W17-1601.pdf) for using identity categories as a variables, particularly gender. State whether the data is linked to individuals and whether those individuals can be identified in the dataset, either directly or indirectly (i.e., in combination with other data).
-
-State whether the dataset contains other data that might be considered sensitive (e.g., data that reveals racial or ethnic origins, sexual orientations, religious beliefs, political opinions or union memberships, or locations; financial or health data; biometric or genetic data; forms of government identification, such as social security numbers; criminal history).  
-
-If efforts were made to anonymize the data, describe the anonymization process.
+[N/A]
 
 ## Considerations for Using the Data
 
 ### Social Impact of Dataset
 
-Please discuss some of the ways you believe the use of this dataset will impact society.
-
-The statement should include both positive outlooks, such as outlining how technologies developed through its use may improve people's lives, and discuss the accompanying risks. These risks may range from making important decisions more opaque to people who are affected by the technology, to reinforcing existing harmful biases (whose specifics should be discussed in the next section), among other considerations.
-
-Also describe in this section if the proposed dataset contains a low-resource or under-represented language. If this is the case or if this task has any impact on underserved communities, please elaborate here.
+Contact the organizers: podcasts-challenge-organizers@spotify.com
 
 ### Discussion of Biases
 
-Provide descriptions of specific biases that are likely to be reflected in the data, and state whether any steps were taken to reduce their impact.
-
-For Wikipedia text, see for example [Dinan et al 2020 on biases in Wikipedia (esp. Table 1)](https://arxiv.org/abs/2005.00614), or [Blodgett et al 2020](https://www.aclweb.org/anthology/2020.acl-main.485/) for a more general discussion of the topic.
-
-If analyses have been run quantifying these biases, please add brief summaries and links to the studies here.
+[N/A]
 
 ### Other Known Limitations
 
-If studies of the datasets have outlined other limitations of the dataset, such as annotation artifacts, please outline and cite them here.
+[N/A]
 
 ## Additional Information
 
 ### Dataset Curators
 
-List the people involved in collecting the dataset and their affiliation(s). If funding information is known, include it here.
+[N/A]
 
 ### Licensing Information
 
-Provide the license and link to the license webpage if available.
+[License](https://docs.google.com/forms/d/e/1FAIpQLSca2WJ45uamUWJ-C5HxHe7a9M1FuiSQPqukTjL8o-vthbQtnA/viewform) 
 
 ### Citation Information
 
-Provide the [BibTex](http://www.bibtex.org/)-formatted reference for the dataset. For example:
 ```
-@article{article_id,
-  author    = {Author List},
-  title     = {Dataset Paper Title},
-  journal   = {Publication Venue},
-  year      = {2525}
+100,000 Podcasts: A Spoken English Document Corpus” by Ann Clifton, Sravana Reddy, Yongze Yu, Aasish Pappu, Rezvaneh Rezapour, Hamed Bonab, Maria Eskevich, Gareth Jones, Jussi Karlgren, Ben Carterette, and Rosie Jones, COLING 2020
+https://www.aclweb.org/anthology/2020.coling-main.519/
+
+Bibtex:
+
+@inproceedings{clifton-etal- 2020-100000,
+    title = "100,000 Podcasts: A Spoken {E}nglish Document Corpus",
+    author = "Clifton, Ann  and
+      Reddy, Sravana  and
+      Yu, Yongze  and
+      Pappu, Aasish  and
+      Rezapour, Rezvaneh  and
+      Bonab, Hamed  and
+      Eskevich, Maria  and
+      Jones, Gareth  and
+      Karlgren, Jussi  and
+      Carterette, Ben  and
+      Jones, Rosie",
+    booktitle = "Proceedings of the 28th International Conference on Computational Linguistics",
+    month = dec,
+    year = "2020",
+    address = "Barcelona, Spain (Online)",
+    publisher = "International Committee on Computational Linguistics",
+    url = "https://www.aclweb.org/ anthology/2020.coling-main.519 ",
+    pages = "5903--5917",
+    abstract = "Podcasts are a large and growing repository of spoken audio. As an audio format, podcasts are more varied in style and production type than broadcast news, contain more genres than typically studied in video data, and are more varied in style and format than previous corpora of conversations. When transcribed with automatic speech recognition they represent a noisy but fascinating collection of documents which can be studied through the lens of natural language processing, information retrieval, and linguistics. Paired with the audio files, they are also a resource for speech processing and the study of paralinguistic, sociolinguistic, and acoustic aspects of the domain. We introduce the Spotify Podcast Dataset, a new corpus of 100,000 podcasts. We demonstrate the complexity of the domain with a case study of two tasks: (1) passage search and (2) summarization. This is orders of magnitude larger than previous speech corpora used for search and summarization. Our results show that the size and variability of this corpus opens up new avenues for research.",
 }
+ 
 ```
 
-If the dataset has a [DOI](https://www.doi.org/), please provide it here.
 
 ### Contributions
 
-Thanks to [@github-username](https://github.com/<github-username>) for adding this dataset.
+Thanks to [Ann Clifton, Sravana Reddy, Yongze Yu, Aasish Pappu, Rezvaneh Rezapour, Hamed Bonab, Maria Eskevich, Gareth Jones, Jussi Karlgren, Ben Carterette, and Rosie Jones, COLING 2020]()
