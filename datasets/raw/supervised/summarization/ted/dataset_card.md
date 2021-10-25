@@ -38,7 +38,7 @@ task_ids:
   - [Table of Contents](#table-of-contents)
   - [Dataset Description](#dataset-description)
     - [Dataset Summary](#dataset-summary)
-    - [Supported Tasks and Leaderboards](#supported-tasks-and-leaderboards)
+    - [Supported Tasks and Model Measurement](#supported-tasks-and-leaderboards)
     - [Languages](#languages)
   - [Dataset Structure](#dataset-structure)
     - [Data Instances](#data-instances)
@@ -65,27 +65,41 @@ task_ids:
 
 ## Dataset Description
 
-- **Homepage:** [Add homepage URL here if available (unless it's a GitHub repository)]()
-- **Repository:** [If the dataset is hosted on github or has a github homepage, add URL here]()
-- **Paper:** [If the dataset was introduced by a paper or there was a paper written describing the dataset, add URL here (landing page for Arxiv paper preferred)]()
-- **Leaderboard:** [If the dataset supports an active leaderboard, add link here]()
-- **Point of Contact:** [If known, name and email of at least one person the reader can contact for questions about the dataset.]()
+- **Homepage:** [Ted Talk Home](https://www.kaggle.com/rounakbanik/ted-talks)
+- **Repository:** [Ted Talk Download](https://www.kaggle.com/account/login?titleType=dataset-downloads&showDatasetDownloadSkip=False&messageId=datasetsWelcome&returnUrl=%2Frounakbanik%2Fted-talks%3Fresource%3Ddownload)
 
 ### Dataset Summary
 
-Briefly summarize the dataset, its intended use and the supported tasks. Give an overview of how and why the dataset was created. The summary should explicitly mention the languages present in the dataset (possibly in broad terms, e.g. *translations between several pairs of European languages*), and describe the domain, topic, or genre covered.
+These datasets contain information about all audio-video recordings of TED Talks uploaded to the official TED.com website until September 21st, 2017. The TED main dataset contains information about all talks including number of views, number of comments, descriptions, speakers and titles. The TED transcripts dataset contains the transcripts for all talks available on TED.com.
 
-### Supported Tasks and Leaderboards
+Content
+There are two CSV files.
 
-For each of the tasks tagged for this dataset, give a brief description of the tag, metrics, and suggested models (with a link to their HuggingFace implementation if available). Give a similar description of tasks that were not covered by the structured tag set (repace the `task-category-tag` with an appropriate `other:other-task-name`).
+ted_main.csv - Contains data on actual TED Talk metadata and TED Talk speakers.
 
-- `task-category-tag`: The dataset can be used to train a model for [TASK NAME], which consists in [TASK DESCRIPTION]. Success on this task is typically measured by achieving a *high/low* [metric name](https://huggingface.co/metrics/metric_name). The ([model name](https://huggingface.co/model_name) or [model class](https://huggingface.co/transformers/model_doc/model_class.html)) model currently achieves the following score. *[IF A LEADERBOARD IS AVAILABLE]:* This task has an active leaderboard which can be found at [leaderboard url]() and ranks models based on [metric name](https://huggingface.co/metrics/metric_name) while also reporting [other metric name](https://huggingface.co/metrics/other_metric_name).
+transcripts.csv - Contains transcript and URL information for TED Talks
+
+Acknowledgements
+The data has been scraped from the official TED Website and is available under the Creative Commons License.
+
+Inspiration
+I've always been fascinated by TED Talks and the immense diversity of content that it provides for free. I was also thoroughly inspired by a TED Talk that visually explored TED Talks stats and I was motivated to do the same thing, albeit on a much less grander scale.
+
+Some of the questions that can be answered with this dataset:
+
+How is each TED Talk related to every other TED Talk?
+Which are the most viewed and most favorited Talks of all time? Are they mostly the same? What does this tell us?
+What kind of topics attract the maximum discussion and debate (in the form of comments)?
+Which months are most popular among TED and TEDx chapters?
+Which themes are most popular amongst TEDsters?
+
+### Supported Tasks and Model Measurement
+
+Extractive and Abstractive Summarization: The dataset can be used to train a model for Extractive and Abstractive summarization, which consists, select key sentences and phrases from the document and combine them into shorter forms and Abstractive summarization tries to understand the main content of the document and then explain them in clear natural language. Success on this task is typically measured by [Rouge Score](https://en.wikipedia.org/wiki/ROUGE_(met
 
 ### Languages
 
-Provide a brief overview of the languages represented in the dataset. Describe relevant details about specifics of the language such as whether it is social media text, African American English,...
-
-When relevant, please provide [BCP-47 codes](https://tools.ietf.org/html/bcp47), which consist of a [primary language subtag](https://tools.ietf.org/html/bcp47#section-2.2.1), with a [script subtag](https://tools.ietf.org/html/bcp47#section-2.2.3) and/or [region subtag](https://tools.ietf.org/html/bcp47#section-2.2.4) if available.
+The dataset is in English language
 
 ## Dataset Structure
 
@@ -94,135 +108,116 @@ When relevant, please provide [BCP-47 codes](https://tools.ietf.org/html/bcp47),
 Provide an JSON-formatted example and brief description of a typical instance in the dataset. If available, provide a link to further examples.
 
 ```
-{
-  'example_field': ...,
-  ...
-}
+comments	description	duration	event	film_date	languages	main_speaker	name	num_speaker	published_date	ratings	related_talks	speaker_occupation	tags	title	url	views
+4553	Sir Ken Robinson makes an entertaining and profoundly moving case for creating an education system that nurtures (rather than undermines) creativity.	1164	TED2006	1140825600	60	Ken Robinson	Ken Robinson: Do schools kill creativity?	1	1151367060	[{'id': 7, 'name': 'Funny', 'count': 19645}, {'id': 1, 'name': 'Beautiful', 'count': 4573}, {'id': 9, 'name': 'Ingenious', 'count': 6073}, {'id': 3, 'name': 'Courageous', 'count': 3253}, {'id': 11, 'name': 'Longwinded', 'count': 387}, {'id': 2, 'name': 'Confusing', 'count': 242}, {'id': 8, 'name': 'Informative', 'count': 7346}, {'id': 22, 'name': 'Fascinating', 'count': 10581}, {'id': 21, 'name': 'Unconvincing', 'count': 300}, {'id': 24, 'name': 'Persuasive', 'count': 10704}, {'id': 23, 'name': 'Jaw-dropping', 'count': 4439}, {'id': 25, 'name': 'OK', 'count': 1174}, {'id': 26, 'name': 'Obnoxious', 'count': 209}, {'id': 10, 'name': 'Inspiring', 'count': 24924}]	[{'id': 865, 'hero': 'https://pe.tedcdn.com/images/ted/172559_800x600.jpg', 'speaker': 'Ken Robinson', 'title': 'Bring on the learning revolution!', 'duration': 1008, 'slug': 'sir_ken_robinson_bring_on_the_revolution', 'viewed_count': 7266103}, {'id': 1738, 'hero': 'https://pe.tedcdn.com/images/ted/de98b161ad1434910ff4b56c89de71af04b8b873_1600x1200.jpg', 'speaker': 'Ken Robinson', 'title': "How to escape education's death valley", 'duration': 1151, 'slug': 'ken_robinson_how_to_escape_education_s_death_valley', 'viewed_count': 6657572}, {'id': 2276, 'hero': 'https://pe.tedcdn.com/images/ted/3821f3728e0b755c7b9aea2e69cc093eca41abe1_2880x1620.jpg', 'speaker': 'Linda Cliatt-Wayman', 'title': 'How to fix a broken school? Lead fearlessly, love hard', 'duration': 1027, 'slug': 'linda_cliatt_wayman_how_to_fix_a_broken_school_lead_fearlessly_love_hard', 'viewed_count': 1617101}, {'id': 892, 'hero': 'https://pe.tedcdn.com/images/ted/e79958940573cc610ccb583619a54866c41ef303_2880x1620.jpg', 'speaker': 'Charles Leadbeater', 'title': 'Education innovation in the slums', 'duration': 1138, 'slug': 'charles_leadbeater_on_education', 'viewed_count': 772296}, {'id': 1232, 'hero': 'https://pe.tedcdn.com/images/ted/0e3e4e92d5ee8ae0e43962d447d3f790b31099b8_800x600.jpg', 'speaker': 'Geoff Mulgan', 'title': 'A short intro to the Studio School', 'duration': 376, 'slug': 'geoff_mulgan_a_short_intro_to_the_studio_school', 'viewed_count': 667971}, {'id': 2616, 'hero': 'https://pe.tedcdn.com/images/ted/71cde5a6fa6c717488fb55eff9eef939a9241761_2880x1620.jpg', 'speaker': 'Kandice Sumner', 'title': "How America's public schools keep kids in poverty", 'duration': 830, 'slug': 'kandice_sumner_how_america_s_public_schools_keep_kids_in_poverty', 'viewed_count': 1181333}]	Author/educator	['children', 'creativity', 'culture', 'dance', 'education', 'parenting', 'teaching']	Do schools kill creativity?	"https://www.ted.com/talks/ken_robinson_says_schools_kill_creativity
+"	47227110
 ```
 
-Provide any additional information that is not covered in the other sections about the data here. In particular describe any relationships between data points and if these relationships are made explicit.
+
 
 ### Data Fields
 
-List and describe the fields present in the dataset. Mention their data type, and whether they are used as input or output in any of the tasks the dataset currently supports. If the data has span indices, describe their attributes, such as whether they are at the character level or word level, whether they are contiguous or not, etc. If the datasets contains example IDs, state whether they have an inherent meaning, such as a mapping to other datasets or pointing to relationships between data points.
-
-- `example_field`: description of `example_field`
-
-Note that the descriptions can be initialized with the **Show Markdown Data Fields** output of the [tagging app](https://github.com/huggingface/datasets-tagging), you will then only need to refine the generated descriptions.
+- `comments`
+-	`description`	
+- `duration`
+- `event`
+- `film_date`
+- `languages`
+- `main_speaker`
+- `name`
+- `num_speaker`
+- `published_date`	
+- `ratings`
+- `related_talks`	
+- `speaker_occupation`
+- `tags`	
+- `title`	
+- `url`
+- `views`
 
 ### Data Splits
 
-Describe and name the splits in the dataset if there are more than one.
-
-Describe any criteria for splitting the data, if used. If their are differences between the splits (e.g. if the training annotations are machine-generated and the dev and test ones are created by humans, or if different numbers of annotators contributed to each example), describe them here.
-
-Provide the sizes of each split. As appropriate, provide any descriptive statistics for the features, such as average length.  For example:
+dataset split into Train, Validation and Test datasets
 
 |                            | Tain   | Valid | Test |
 | -----                      | ------ | ----- | ---- |
-| Input Sentences            |        |       |      |
-| Average Sentence Length    |        |       |      |
+| Input Sentences            |   265526     |  57254     |   55849   |
+| Average Sentence Length    |     93   |  94     |   92   |
 
 ## Dataset Creation
 
 ### Curation Rationale
 
-What need motivated the creation of this dataset? What are some of the reasons underlying the major choices involved in putting it together?
+[N/A]
 
 ### Source Data
 
-This section describes the source data (e.g. news text and headlines, social media posts, translated sentences,...)
+Kaggle
 
 #### Initial Data Collection and Normalization
 
-Describe the data collection process. Describe any criteria for data selection or filtering. List any key words or search terms used. If possible, include runtime information for the collection process.
-
-If data was collected from other pre-existing datasets, link to source here and to their [Hugging Face version](https://huggingface.co/datasets/dataset_name).
-
-If the data was modified or normalized after being collected (e.g. if the data is word-tokenized), describe the process and the tools used.
+[N/A]
 
 #### Who are the source language producers?
 
-State whether the data was produced by humans or machine generated. Describe the people or systems who originally created the data.
-
-If available, include self-reported demographic or identity information for the source data creators, but avoid inferring this information. Instead state that this information is unknown. See [Larson 2017](https://www.aclweb.org/anthology/W17-1601.pdf) for using identity categories as a variables, particularly gender.
-
-Describe the conditions under which the data was created (for example, if the producers were crowdworkers, state what platform was used, or if the data was found, what website the data was found on). If compensation was provided, include that information here.
-
-Describe other people represented or mentioned in the data. Where possible, link to references for the information.
+audio-video recordings of TED Talks uploaded to the official TED.com 
 
 ### Annotations
 
-If the dataset contains annotations which are not part of the initial data collection, describe them in the following paragraphs.
+[N/A]
 
 #### Annotation process
 
-If applicable, describe the annotation process and any tools used, or state otherwise. Describe the amount of data annotated, if not all. Describe or reference annotation guidelines provided to the annotators. If available, provide interannotator statistics. Describe any annotation validation processes.
+[N/A]
 
 #### Who are the annotators?
 
-If annotations were collected for the source data (such as class labels or syntactic parses), state whether the annotations were produced by humans or machine generated.
-
-Describe the people or systems who originally created the annotations and their selection criteria if applicable.
-
-If available, include self-reported demographic or identity information for the annotators, but avoid inferring this information. Instead state that this information is unknown. See [Larson 2017](https://www.aclweb.org/anthology/W17-1601.pdf) for using identity categories as a variables, particularly gender.
-
-Describe the conditions under which the data was annotated (for example, if the annotators were crowdworkers, state what platform was used, or if the data was found, what website the data was found on). If compensation was provided, include that information here.
-
+[N/A]
 ### Personal and Sensitive Information
 
-State whether the dataset uses identity categories and, if so, how the information is used. Describe where this information comes from (i.e. self-reporting, collecting from profiles, inferring, etc.). See [Larson 2017](https://www.aclweb.org/anthology/W17-1601.pdf) for using identity categories as a variables, particularly gender. State whether the data is linked to individuals and whether those individuals can be identified in the dataset, either directly or indirectly (i.e., in combination with other data).
-
-State whether the dataset contains other data that might be considered sensitive (e.g., data that reveals racial or ethnic origins, sexual orientations, religious beliefs, political opinions or union memberships, or locations; financial or health data; biometric or genetic data; forms of government identification, such as social security numbers; criminal history).  
-
-If efforts were made to anonymize the data, describe the anonymization process.
+[N/A]
 
 ## Considerations for Using the Data
 
 ### Social Impact of Dataset
 
-Please discuss some of the ways you believe the use of this dataset will impact society.
-
-The statement should include both positive outlooks, such as outlining how technologies developed through its use may improve people's lives, and discuss the accompanying risks. These risks may range from making important decisions more opaque to people who are affected by the technology, to reinforcing existing harmful biases (whose specifics should be discussed in the next section), among other considerations.
-
-Also describe in this section if the proposed dataset contains a low-resource or under-represented language. If this is the case or if this task has any impact on underserved communities, please elaborate here.
+[N/A]
 
 ### Discussion of Biases
 
-Provide descriptions of specific biases that are likely to be reflected in the data, and state whether any steps were taken to reduce their impact.
-
-For Wikipedia text, see for example [Dinan et al 2020 on biases in Wikipedia (esp. Table 1)](https://arxiv.org/abs/2005.00614), or [Blodgett et al 2020](https://www.aclweb.org/anthology/2020.acl-main.485/) for a more general discussion of the topic.
-
-If analyses have been run quantifying these biases, please add brief summaries and links to the studies here.
-
+[N/A]
 ### Other Known Limitations
 
-If studies of the datasets have outlined other limitations of the dataset, such as annotation artifacts, please outline and cite them here.
+[N/A]
 
 ## Additional Information
 
 ### Dataset Curators
 
-List the people involved in collecting the dataset and their affiliation(s). If funding information is known, include it here.
-
+[N/A]
 ### Licensing Information
 
-Provide the license and link to the license webpage if available.
+Copyright (c) 2020 Vishal Gupta
 
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
 ### Citation Information
-
-Provide the [BibTex](http://www.bibtex.org/)-formatted reference for the dataset. For example:
-```
-@article{article_id,
-  author    = {Author List},
-  title     = {Dataset Paper Title},
-  journal   = {Publication Venue},
-  year      = {2525}
-}
-```
-
-If the dataset has a [DOI](https://www.doi.org/), please provide it here.
+[N/A]
 
 ### Contributions
-
-Thanks to [@github-username](https://github.com/<github-username>) for adding this dataset.
+[N/A]
