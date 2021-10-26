@@ -1,4 +1,4 @@
-.PHONY: clean lint data
+.PHONY: clean lint data install
 
 #################################################################################
 # GLOBALS                                                                       #
@@ -26,3 +26,5 @@ data:
 # PROJECT RULES                                                                 #
 #################################################################################
 
+install:
+	python -m spacy download en_core_web_sm
