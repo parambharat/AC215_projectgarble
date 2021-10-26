@@ -38,7 +38,7 @@ task_ids:
   - [Table of Contents](#table-of-contents)
   - [Dataset Description](#dataset-description)
     - [Dataset Summary](#dataset-summary)
-    - [Supported Tasks and Leaderboards](#supported-tasks-and-leaderboards)
+    - [Supported Tasks and Model Measurement](#supported-tasks-and-leaderboards)
     - [Languages](#languages)
   - [Dataset Structure](#dataset-structure)
     - [Data Instances](#data-instances)
@@ -65,63 +65,69 @@ task_ids:
 
 ## Dataset Description
 
-- **Homepage:** [Add homepage URL here if available (unless it's a GitHub repository)]()
-- **Repository:** [If the dataset is hosted on github or has a github homepage, add URL here]()
-- **Paper:** [If the dataset was introduced by a paper or there was a paper written describing the dataset, add URL here (landing page for Arxiv paper preferred)]()
-- **Leaderboard:** [If the dataset supports an active leaderboard, add link here]()
-- **Point of Contact:** [If known, name and email of at least one person the reader can contact for questions about the dataset.]()
+- **Homepage:** [ICSI Home](http://www1.icsi.berkeley.edu/Speech/mr/)
+- **Repository:** [ICSI download](https://groups.inf.ed.ac.uk/ami/icsi/download/)
+
 
 ### Dataset Summary
 
-Briefly summarize the dataset, its intended use and the supported tasks. Give an overview of how and why the dataset was created. The summary should explicitly mention the languages present in the dataset (possibly in broad terms, e.g. *translations between several pairs of European languages*), and describe the domain, topic, or genre covered.
+The ICSI Meeting Corpus is an audio data set consisting of about 70 hours of meeting recordings. More information can be found at the ICSI web site. To access the data, follow the directions given on the download page.
 
-### Supported Tasks and Leaderboards
+The audio was recorded on close-talking microphones - and available as either separate SPH files or a single mixed WAV file. Also available is orthographic transcription, and manual annotation of dialog acts and speech quality. Some third party annotations may also be made available here.
 
-For each of the tasks tagged for this dataset, give a brief description of the tag, metrics, and suggested models (with a link to their HuggingFace implementation if available). Give a similar description of tasks that were not covered by the structured tag set (repace the `task-category-tag` with an appropriate `other:other-task-name`).
+All of the signals and transcription, and some of the annotations, have been released publicly under the Creative Commons Attribution 4.0 International Licence (CC BY 4.0).
 
-- `task-category-tag`: The dataset can be used to train a model for [TASK NAME], which consists in [TASK DESCRIPTION]. Success on this task is typically measured by achieving a *high/low* [metric name](https://huggingface.co/metrics/metric_name). The ([model name](https://huggingface.co/model_name) or [model class](https://huggingface.co/transformers/model_doc/model_class.html)) model currently achieves the following score. *[IF A LEADERBOARD IS AVAILABLE]:* This task has an active leaderboard which can be found at [leaderboard url]() and ranks models based on [metric name](https://huggingface.co/metrics/metric_name) while also reporting [other metric name](https://huggingface.co/metrics/other_metric_name).
+The collection includes 922 speech files, for a total of approximately 72 hours of Meeting Room speech. The speech is structured as one subdirectory per meeting, containing wavefiles for each channel (and possible .blp file, specifying any censored intervals).
+
+The audio was collected at a 48 kHZ sample-rate, downsampled on the fly to 16 kHz. Audio files for each meeting are provided as separate time-synchronous recordings for each channel, encoded as 16-bit linear (big-endian) wavefiles, shorten-compressed in NIST SPHERE format.
+
+The meetings were simultaneously recorded using close-talking microphones for each speaker (generally head-mounted, but early meetings contain some lapel microphones), as well as six table-top microphones: four high-quality omnidirectional PZM microphones arrayed down the center of the conference table, and two inexpensive microphone elements mounted on a mock PDA. All meetings were recorded in the same instrumented meeting room.
+
+In addition to recording the meetings themselves, the participants were also asked to read digit strings, similar to those found in TIDIGITS, at the start or end of the meeting. This small-vocabulary read-speech component of the recordings -- using the same meeting room, speakers, and microphones -- provides a valuable supplement to the natural conversational data, allowing a factorization of the speech challenges offered by the corpus. For all but a dozen of the meetings included in the corpus, at least some of the participants read digit strings; for the great majority of meetings, all participants did. The digit readings are included as part of the wavefiles for the meeting as a whole and are fully transcribed as part of the associated transcripts.
+
+There are a total of 53 unique speakers in the corpus. Meetings involved anywhere from three to 10 participants, averaging six. The corpus contains a significant proportion of non-native English speakers, varying in fluency from nearly-native to challenging-to-transcribe.
+
+### Supported Tasks and Model measurement
+
+Extractive and Abstractive Summarization: The dataset can be used to train a model for Extractive and Abstractive summarization, which consists, select key sentences and phrases from the document and combine them into shorter forms and Abstractive summarization tries to understand the main content of the document and then explain them in clear natural language. Success on this task is typically measured by [Rouge Score](https://en.wikipedia.org/wiki/ROUGE_(metric)).
+
 
 ### Languages
 
-Provide a brief overview of the languages represented in the dataset. Describe relevant details about specifics of the language such as whether it is social media text, African American English,...
-
-When relevant, please provide [BCP-47 codes](https://tools.ietf.org/html/bcp47), which consist of a [primary language subtag](https://tools.ietf.org/html/bcp47#section-2.2.1), with a [script subtag](https://tools.ietf.org/html/bcp47#section-2.2.3) and/or [region subtag](https://tools.ietf.org/html/bcp47#section-2.2.4) if available.
+The dataset is available in english language
 
 ## Dataset Structure
 
 ### Data Instances
 
-Provide an JSON-formatted example and brief description of a typical instance in the dataset. If available, provide a link to further examples.
 
 ```
-{
-  'example_field': ...,
-  ...
-}
+<data>
+    <items>
+        <item name="item1">item1abc</item>
+        <item name="item2">item2abc</item>
+    </items>
+</data>
 ```
 
-Provide any additional information that is not covered in the other sections about the data here. In particular describe any relationships between data points and if these relationships are made explicit.
+
 
 ### Data Fields
 
-List and describe the fields present in the dataset. Mention their data type, and whether they are used as input or output in any of the tasks the dataset currently supports. If the data has span indices, describe their attributes, such as whether they are at the character level or word level, whether they are contiguous or not, etc. If the datasets contains example IDs, state whether they have an inherent meaning, such as a mapping to other datasets or pointing to relationships between data points.
+- `item1` = Description
 
-- `example_field`: description of `example_field`
-
-Note that the descriptions can be initialized with the **Show Markdown Data Fields** output of the [tagging app](https://github.com/huggingface/datasets-tagging), you will then only need to refine the generated descriptions.
+- `item2` = Summary
 
 ### Data Splits
+dataset split into Train, Validation and Test data sets
 
-Describe and name the splits in the dataset if there are more than one.
+  For example:
 
-Describe any criteria for splitting the data, if used. If their are differences between the splits (e.g. if the training annotations are machine-generated and the dev and test ones are created by humans, or if different numbers of annotators contributed to each example), describe them here.
-
-Provide the sizes of each split. As appropriate, provide any descriptive statistics for the features, such as average length.  For example:
 
 |                            | Tain   | Valid | Test |
 | -----                      | ------ | ----- | ---- |
-| Input Sentences            |        |       |      |
-| Average Sentence Length    |        |       |      |
+| Input Sentences            |  35773      |  11650     |  5909    |
+| Average Sentence Length    |    882    |    970   |  984    |
 
 ## Dataset Creation
 
@@ -153,47 +159,34 @@ Describe other people represented or mentioned in the data. Where possible, link
 
 ### Annotations
 
-If the dataset contains annotations which are not part of the initial data collection, describe them in the following paragraphs.
+Annotations are in [NXT format](http://groups.inf.ed.ac.uk/nxt/). To use with signals downloaded below, unzip one or both of these files into the 'amicorpus' directory. Requires NXT version 1.4.4.
+
+[ICSI core annotations](http://groups.inf.ed.ac.uk/ami/ICSICorpusAnnotations/ICSI_core_NXT.zip)v1.0 22-July-2016 (19MB): transcripts plus dialogue act coding
+[ICSI core plus contributed annotations](http://groups.inf.ed.ac.uk/ami/ICSICorpusAnnotations/ICSI_plus_NXT.zip) v1.0 (53MB): all the above plus third-party annotations for topic, hotspot, summarization etc.
+[ICSI original MRT format transcripts with documentation](http://groups.inf.ed.ac.uk/ami/ICSICorpusAnnotations/ICSI_plus_NXT.zip) (4MB)
+To use the signals below with NXT, download the Headset mix files, and unzip them into the directory where your ICSI-metadata.xml file is. Some programs assume the wav files are directly in the Signals directory, so you may need to use soft links to use those programs with audio.
 
 #### Annotation process
 
-If applicable, describe the annotation process and any tools used, or state otherwise. Describe the amount of data annotated, if not all. Describe or reference annotation guidelines provided to the annotators. If available, provide interannotator statistics. Describe any annotation validation processes.
+[N/A]
 
 #### Who are the annotators?
 
-If annotations were collected for the source data (such as class labels or syntactic parses), state whether the annotations were produced by humans or machine generated.
-
-Describe the people or systems who originally created the annotations and their selection criteria if applicable.
-
-If available, include self-reported demographic or identity information for the annotators, but avoid inferring this information. Instead state that this information is unknown. See [Larson 2017](https://www.aclweb.org/anthology/W17-1601.pdf) for using identity categories as a variables, particularly gender.
-
-Describe the conditions under which the data was annotated (for example, if the annotators were crowdworkers, state what platform was used, or if the data was found, what website the data was found on). If compensation was provided, include that information here.
+[N/A]
 
 ### Personal and Sensitive Information
 
-State whether the dataset uses identity categories and, if so, how the information is used. Describe where this information comes from (i.e. self-reporting, collecting from profiles, inferring, etc.). See [Larson 2017](https://www.aclweb.org/anthology/W17-1601.pdf) for using identity categories as a variables, particularly gender. State whether the data is linked to individuals and whether those individuals can be identified in the dataset, either directly or indirectly (i.e., in combination with other data).
-
-State whether the dataset contains other data that might be considered sensitive (e.g., data that reveals racial or ethnic origins, sexual orientations, religious beliefs, political opinions or union memberships, or locations; financial or health data; biometric or genetic data; forms of government identification, such as social security numbers; criminal history).  
-
-If efforts were made to anonymize the data, describe the anonymization process.
+[N/A]
 
 ## Considerations for Using the Data
 
 ### Social Impact of Dataset
 
-Please discuss some of the ways you believe the use of this dataset will impact society.
-
-The statement should include both positive outlooks, such as outlining how technologies developed through its use may improve people's lives, and discuss the accompanying risks. These risks may range from making important decisions more opaque to people who are affected by the technology, to reinforcing existing harmful biases (whose specifics should be discussed in the next section), among other considerations.
-
-Also describe in this section if the proposed dataset contains a low-resource or under-represented language. If this is the case or if this task has any impact on underserved communities, please elaborate here.
+[N/A]
 
 ### Discussion of Biases
 
-Provide descriptions of specific biases that are likely to be reflected in the data, and state whether any steps were taken to reduce their impact.
-
-For Wikipedia text, see for example [Dinan et al 2020 on biases in Wikipedia (esp. Table 1)](https://arxiv.org/abs/2005.00614), or [Blodgett et al 2020](https://www.aclweb.org/anthology/2020.acl-main.485/) for a more general discussion of the topic.
-
-If analyses have been run quantifying these biases, please add brief summaries and links to the studies here.
+[N/A]
 
 ### Other Known Limitations
 
@@ -203,26 +196,21 @@ If studies of the datasets have outlined other limitations of the dataset, such 
 
 ### Dataset Curators
 
-List the people involved in collecting the dataset and their affiliation(s). If funding information is known, include it here.
+[N/A]
 
 ### Licensing Information
 
-Provide the license and link to the license webpage if available.
+The ICSI corpus and its annotations are released under the Creative
+Commons Attribution 4.0 license agreement (also called CC BY 4.0).
+Use of this data implies agreement with the terms below. See also:
+http://creativecommons.org/licenses/by/4.0/legalcode
 
 ### Citation Information
-
-Provide the [BibTex](http://www.bibtex.org/)-formatted reference for the dataset. For example:
 ```
-@article{article_id,
-  author    = {Author List},
-  title     = {Dataset Paper Title},
-  journal   = {Publication Venue},
-  year      = {2525}
+@@INPROCEEDINGS{Mccowan05theami,
+    author = {I. Mccowan and G. Lathoud and M. Lincoln and A. Lisowska and W. Post and D. Reidsma and P. Wellner},
+    title = {The AMI Meeting Corpus},
+    booktitle = {In: Proceedings Measuring Behavior 2005, 5th International Conference on Methods and Techniques in Behavioral Research. L.P.J.J. Noldus, F. Grieco, L.W.S. Loijens and P.H. Zimmerman (Eds.), Wageningen: Noldus Information Technology},
+    year = {2005}
 }
 ```
-
-If the dataset has a [DOI](https://www.doi.org/), please provide it here.
-
-### Contributions
-
-Thanks to [@github-username](https://github.com/<github-username>) for adding this dataset.
