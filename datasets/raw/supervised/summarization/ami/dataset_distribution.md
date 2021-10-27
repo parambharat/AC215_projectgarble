@@ -1,6 +1,5 @@
 **Train Data  Distribution**
 -  830 sentences, 6177 words and 7443 characters per row are the mean values and they are  close to the median values.
-- Standard deviations are  small, but not too small.
 - We observe that the maximum number of sentences (2154) and chars (more than 13157.00) are far away from the mean values, indicating that there are some registers with values out of range or outliers.
 
 **Train Data Summary Distribution**
