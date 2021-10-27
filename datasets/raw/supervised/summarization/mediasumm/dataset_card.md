@@ -1,67 +1,4 @@
----
-YAML tags:
-- copy-paste the tags obtained with the tagging app: https://github.com/huggingface/datasets-tagging
-
-annotations_creators:
-- other
-language_creators:
-- other
-languages:
-- en-US
-licenses:
-- unknown
-multilinguality:
-- monolingual
-pretty_name: 'Garble Summarization'
-size_categories:
-- unknown
-source_datasets:
-- extended|cc_news
-- extended|cnn_dailymail
-- extended|xsum
-- extended|mediasumm
-- extended|tedtalks
-- extended|spotify
-- extended|ami
-- extended|icsi
-
-task_categories:
-- conditional-text-generation
-task_ids:
-- summarization
----
-
-# Dataset Card Creation Guide
-
-## Table of Contents
-- [Dataset Card Creation Guide](#dataset-card-creation-guide)
-  - [Table of Contents](#table-of-contents)
-  - [Dataset Description](#dataset-description)
-    - [Dataset Summary](#dataset-summary)
-    - [Supported Tasks and Model Measurement](#supported-tasks-and-leaderboards)
-    - [Languages](#languages)
-  - [Dataset Structure](#dataset-structure)
-    - [Data Instances](#data-instances)
-    - [Data Fields](#data-fields)
-    - [Data Splits](#data-splits)
-  - [Dataset Creation](#dataset-creation)
-    - [Curation Rationale](#curation-rationale)
-    - [Source Data](#source-data)
-      - [Initial Data Collection and Normalization](#initial-data-collection-and-normalization)
-      - [Who are the source language producers?](#who-are-the-source-language-producers)
-    - [Annotations](#annotations)
-      - [Annotation process](#annotation-process)
-      - [Who are the annotators?](#who-are-the-annotators)
-    - [Personal and Sensitive Information](#personal-and-sensitive-information)
-  - [Considerations for Using the Data](#considerations-for-using-the-data)
-    - [Social Impact of Dataset](#social-impact-of-dataset)
-    - [Discussion of Biases](#discussion-of-biases)
-    - [Other Known Limitations](#other-known-limitations)
-  - [Additional Information](#additional-information)
-    - [Dataset Curators](#dataset-curators)
-    - [Licensing Information](#licensing-information)
-    - [Citation Information](#citation-information)
-    - [Contributions](#contributions)
+# Dataset Card Mediasumm Dataset
 
 ## Dataset Description
 
@@ -85,7 +22,6 @@ The dataset is in english.
 ## Dataset Structure
 
 ### Data Instances
-
 
 
 ```
@@ -140,32 +76,14 @@ dataset splits into Train, Validation and Test datasets
 
 ## Dataset Creation
 
-### Curation Rationale
-
-[N/A]
 
 ### Source Data
 
  publicly available transcripts data from the media sources
 
-#### Initial Data Collection and Normalization
-
-[N/A]
-
 #### Who are the source language producers?
 
 publicly available transcripts.
-
-### Annotations
-
-[N/A]
-#### Annotation process
-
-[N/A]
-
-#### Who are the annotators?
-
-[N/A]
 
 ### Personal and Sensitive Information
 
@@ -187,15 +105,12 @@ Also describe in this section if the proposed dataset contains a low-resource or
 
 As media and guests may have biased views, the transcripts and summaries will likely contain them. The content of the transcripts and summaries only reflect the views of the media and guests, and should be viewed with discretion.
 
-### Other Known Limitations
+#### Final Data
 
-[N/A]
-
-## Additional Information
-
-### Dataset Curators
-
-[N/A]
+**Final dataset has below structure**
+```
+{"document": ["CHITTAGONG, Bangladesh: Roshen Silva joined the run fest in Chittagong to score his maiden Test century as Sri Lanka took a 99-run lead in the first Test against Bangladesh on Saturday (Feb 3).", "The visitors reached 612-4 at lunch on the fourth day as they eased past Bangladesh's first innings total of 513 at the Zahur Ahmed Chowdhury Stadium.", "Silva made 109 off 230 balls before he became the only batsman to be dismissed in the first session of the day after Sri Lanka resumed on 504-3.", "He was Sri Lanka's third centurion in the innings after Kusal Mendis and Dhananjaya de Silva, who made 196 and 173 runs respectively.", "Off-spinner Mehedi Hasan ended Silva's impressive innings as the right-hander edged a low delivery to wicketkeeper Liton Das.", "Silva shared a 135-run stand with skipper Dinesh Chandimal for the fourth wicket and hit 6 fours and a six.", "Advertisement", "Advertisement", "Chandimal closed in on his 11 Test century and fifth against Bangladesh to remain unbeaten on 87 at the break.", "Wicketkeeper-batsman Niroshan Dickwella was accompanying him at the crease with 29 not out.", "Bangladesh had the chance to dismiss Chandimal on 79 but Liton dropped a catch down the leg side off Mehedi.", "The off-spinner himself was at fault a few overs later when he could not get his hand onto an edge offered by Dickwella off Taijul Islam as the ball raced for four.", "Dickwella made Bangladesh pay for the miss as he hit the next two balls also for four with his last boundary taking Sri Lanka past 600 runs.", "Sri Lanka will now look to consolidate their lead to press for victory on a wearing pitch that has started showing encouraging signs for their spinners."], "summary": ["Cricket: Silva hits maiden ton as Sri Lanka build lead"]}
+```
 
 ### Licensing Information
 
@@ -211,7 +126,6 @@ North American Chapter of the Association for Computational Linguistics (NAACL),
   year={2021}
 }
 ```
-
 
 
 ### Contributions
