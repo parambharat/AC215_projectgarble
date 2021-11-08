@@ -52,7 +52,7 @@ const Header = (props) => {
                     </IconButton>
                     <Link to="/" className={classes.appLink}>
                         <Typography className={classes.appTitle} >
-                            🍄 Mushroom Identifier
+                            Garble: Audio Summarizer
                         </Typography>
                     </Link>
 
@@ -63,10 +63,6 @@ const Header = (props) => {
                         <IconButton color="inherit" component={Link} to="/">
                             <Icon>home</Icon>
                             <Typography variant="caption">&nbsp;Home</Typography>
-                        </IconButton>
-                        <IconButton color="inherit" component={Link} to="/leaderboard">
-                            <Icon>leaderboard</Icon>
-                            <Typography variant="caption">&nbsp;Leaderboard</Typography>
                         </IconButton>
                         <IconButton color="inherit" component={Link} to="/currentmodel">
                             <Icon>model_training</Icon>

@@ -66,7 +66,7 @@ const Home = (props) => {
                             onChange={(event) => handleOnChange(event)}
                         />
                         <div><img className={classes.preview} src={image} /></div>
-                        <div className={classes.help}>Click to take a picture or upload...</div>
+                        <div className={classes.help}>Click to upload audio file...</div>
                     </div>
                 </Container>
             </main>
