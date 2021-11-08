@@ -1,0 +1,25 @@
+[[source]]
+name = "pypi"
+url = "https://pypi.org/simple"
+verify_ssl = true
+
+[dev-packages]
+jupyter = "*"
+
+[packages]
+spacy = "*"
+scikit-learn = "*"
+numpy = "*"
+pandas = "*"
+gensim = "*"
+matplotlib = "*"
+tqdm = "*"
+seaborn = "*"
+datasets = "*"
+transformers = "*"
+pytextrank = "*"
+
+
+
+[requires]
+python_version = "3.9"

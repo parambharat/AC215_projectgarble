@@ -1,0 +1,9 @@
+@inproceedings{inproceedings,
+author = {Janin, A. and Baron, D. and Edwards, J. and Ellis, D. and Gelbart, D. and Morgan, Nathaniel and Peskin, B. and Pfau, Thilo and Shriberg, Elizabeth and Stolcke, A. and Wooters, Chuck},
+year = {2003},
+month = {05},
+pages = {I-364 },
+title = {The ICSI meeting corpus},
+isbn = {0-7803-7663-3},
+doi = {10.1109/ICASSP.2003.1198793}
+}
