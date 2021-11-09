@@ -2,6 +2,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 import Home from './Pages/Home';
 import Summary from './Pages/Summary';
+import Header from './Components/Header';
 
 import Theme from './Theme';
 import {
@@ -14,6 +15,7 @@ function App() {
     <div className="App">
       <ThemeProvider theme={Theme}>
         <BrowserRouter basename="/">
+          <Header/>
           <Routes>
             <Route path="/summary" element={<Summary />} />
             <Route path="/" element={<Home />} />
