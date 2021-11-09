@@ -12,6 +12,8 @@ google-cloud-speech = "*"
 ffmpeg-python = "*"
 python-multipart = "*"
 transformers = "*"
+torch = "*"
+sentencepiece = "*"
 
 [requires]
 python_version = "3.8"
