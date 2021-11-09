@@ -15,7 +15,7 @@ const DataService = {
     Predict: async function (formData) {
         return await axios.post(BASE_API_URL + "/predict", formData, {
             headers: {
-                'Content-Type': 'multipart/form-data'
+                'Content-Type': 'multipart/form-data', 
             }
         });
     },

@@ -13,5 +13,7 @@ def make_prediction(text):
     """
     Makes a prediction using the model
     """
-    summary = summarization_pipeline(text)[0]["summary"]
+    print(summarization_pipeline(text)[0])
+    summary = summarization_pipeline(text)[0]['summary_text']
+    
     return {"summary": summary}

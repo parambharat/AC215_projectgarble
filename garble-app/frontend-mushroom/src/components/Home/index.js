@@ -35,8 +35,9 @@ const Home = (props) => {
         console.log(formData.get('file'));
         DataService.Predict(formData)
             .then(function (response) {
-                console.log(response.data);
-                setPrediction(response.data);
+              console.log('DataService Predict response');
+              console.log(response.data);
+              setPrediction(response.data);
             })
     }
     console.log({audio});
