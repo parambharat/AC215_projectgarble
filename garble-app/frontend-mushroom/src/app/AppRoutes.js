@@ -1,5 +1,5 @@
 import React from "react";
-import { Route, Switch, Redirect } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import Home from "../components/Home";
 import Error404 from '../components/Error/404';
 import Leaderboard from '../components/Leaderboard';

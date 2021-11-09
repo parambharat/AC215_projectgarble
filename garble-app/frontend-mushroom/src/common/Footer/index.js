@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect } from 'react';
 import { withStyles } from '@material-ui/core';
 import Typography from '@material-ui/core/Typography';
 
@@ -6,8 +6,7 @@ import styles from './styles';
 
 const Footer = (props) => {
     const { classes } = props;
-    const { history } = props;
-
+    
     console.log("================================== Footer ======================================");
 
     // Component States
