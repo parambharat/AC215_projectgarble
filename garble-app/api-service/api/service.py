@@ -1,6 +1,7 @@
 import os
 from tempfile import TemporaryDirectory
 
+import api.model as model
 import api.transcription as transcription
 from fastapi import FastAPI, File
 from starlette.middleware.cors import CORSMiddleware
@@ -37,6 +38,6 @@ async def predict(file: bytes = File(...)):
         # transcribe audio file
         transcription_results = transcription.transcribe_audio_file(audio_path)
         # Make prediction
-        # prediction_results = model.make_prediction(image_path)
+        prediction_results = model.make_prediction(transcription_results)
 
-    return transcription_results
+    return prediction_results
