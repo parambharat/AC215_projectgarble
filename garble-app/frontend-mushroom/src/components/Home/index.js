@@ -14,7 +14,7 @@ const Home = (props) => {
     const inputFile = useRef(null);
 
     // Component States
-    const [image, setImage] = useState(null);
+    const [audio, setAudio] = useState(null);
     const [prediction, setPrediction] = useState(null);
 
     // Setup Component
@@ -28,17 +28,18 @@ const Home = (props) => {
     }
     const handleOnChange = (event) => {
         console.log(event.target.files);
-        setImage(URL.createObjectURL(event.target.files[0]));
+        setAudio(URL.createObjectURL(event.target.files[0]));
 
         var formData = new FormData();
         formData.append("file", event.target.files[0]);
+        console.log(formData.get('file'));
         DataService.Predict(formData)
             .then(function (response) {
                 console.log(response.data);
                 setPrediction(response.data);
             })
     }
-
+    console.log({audio});
     return (
         <div className={classes.root}>
             <main className={classes.main}>
@@ -57,13 +58,11 @@ const Home = (props) => {
                         <input
                             type="file"
                             accept="audio/*"
-                            autocomplete="off"
-                            tabindex="-1"
                             className={classes.fileInput}
                             ref={inputFile}
                             onChange={(event) => handleOnChange(event)}
                         />
-                        <div><img className={classes.preview} src={image} /></div>
+                        <div>{audio && <audio controls src={audio} />}</div>
                         <div className={classes.help}>Click to upload audio file...</div>
                     </div>
                 </Container>
