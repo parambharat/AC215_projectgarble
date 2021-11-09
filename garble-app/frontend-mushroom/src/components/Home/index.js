@@ -23,7 +23,7 @@ const Home = (props) => {
     }, []);
 
     // Handlers
-    const handleImageUploadClick = () => {
+    const handleAudioUploadClick = () => {
         inputFile.current.click();
     }
     const handleOnChange = (event) => {
@@ -53,12 +53,10 @@ const Home = (props) => {
                             }
                         </Typography>
                     }
-                    <div className={classes.dropzone} onClick={() => handleImageUploadClick()}>
+                    <div className={classes.dropzone} onClick={() => handleAudioUploadClick()}>
                         <input
                             type="file"
-                            accept="image/*"
-                            capture="camera"
-                            on
+                            accept="audio/*"
                             autocomplete="off"
                             tabindex="-1"
                             className={classes.fileInput}

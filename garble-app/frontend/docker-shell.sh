@@ -1,20 +1,9 @@
 #!/bin/bash
 
-# exit immediately if a command exits with a non-zero status
 set -e
 
-# Define some environment variables
-# Automatic export to the environment of subsequently executed commands
-# source: the command 'help export' run in Terminal
-export IMAGE_NAME="garbel-app-frontend"
-export BASE_DIR=$(pwd)
+# Read the settings file
+source ./env.dev
 
-# Build the image based on the Dockerfile
-docker build -t $IMAGE_NAME -f Dockerfile .
-
-# Run the container
-# --mount: Attach a filesystem mount to the container
-# -p: Publish a container's port(s) to the host (host_port: container_port) (source: https://dockerlabs.collabnix.com/intermediate/networking/ExposingContainerPort.html)
-docker run --rm --name $IMAGE_NAME -ti \
---mount type=bind,source="$BASE_DIR",target=/app \
--p 8080:8080 $IMAGE_NAME
+docker build -t $IMAGE_NAME -f Dockerfile.dev .
+docker run --rm --name $IMAGE_NAME -ti -v "$(pwd)/:/app/" -p 3200:3000 $IMAGE_NAME

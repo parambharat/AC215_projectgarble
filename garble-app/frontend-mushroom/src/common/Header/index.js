@@ -91,13 +91,6 @@ const Header = (props) => {
                         </List>
                         <Divider />
                         <List>
-                            <ListItem button key='menuitem12' component={Link} to="/leaderboard">
-                                <ListItemIcon><Icon>leaderboard</Icon></ListItemIcon>
-                                <ListItemText primary='Leaderboard' />
-                            </ListItem>
-
-                        </List>
-                        <List>
                             <ListItem button key='menuitem12' component={Link} to="/currentmodel">
                                 <ListItemIcon><Icon>star</Icon></ListItemIcon>
                                 <ListItemText primary='Current Model' />
