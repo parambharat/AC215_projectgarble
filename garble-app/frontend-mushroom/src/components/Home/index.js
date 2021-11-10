@@ -8,11 +8,10 @@ import DataService from "../../services/DataService";
 import styles from './styles';
 
 const SummaryText = ({summary}) => {
-
   if (summary) { 
     return <div>{summary.summary}</div>
   } else { 
-    return <div style={{marginLeft: 'auto', marginRight: 'auto', width: '13rem'}}>No audio file uploaded yet.</div>
+    return <div style={{marginLeft: 'auto', marginRight: 'auto', width: '13rem'}}>2. Get short summary of audio.</div>
   }
 }
 
@@ -44,11 +43,8 @@ const Home = (props) => {
 
     var formData = new FormData();
     formData.append("file", event.target.files[0]);
-    console.log(formData.get('file'));
     await DataService.Predict(formData)
       .then(function (response) {
-        console.log('DataService Predict response');
-        console.log(response.data);
         setSummary(response.data);
       }); 
     setIsLoading(false);
@@ -70,7 +66,7 @@ const Home = (props) => {
                   onChange={(event) => handleOnChange(event)}
                 />
                 <div>{audio && <audio controls src={audio} />}</div>
-                <div className={classes.help}>Click to upload audio file...</div>
+                <div className={classes.help}>1. Click to upload audio file.</div>
               </div>
             </Grid>
             <Grid item xs={6}>
