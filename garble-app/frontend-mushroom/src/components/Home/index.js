@@ -6,6 +6,15 @@ import Grid from '@material-ui/core/Grid';
 import DataService from "../../services/DataService";
 import styles from './styles';
 
+const SummaryText = ({summary}) => {
+
+  if (summary) { 
+    return <div>{summary.summary}</div>
+  } else { 
+    return <div>No audio file uploaded yet.</div>
+  }
+}
+
 const Home = (props) => {
   const { classes } = props;
 
@@ -16,6 +25,7 @@ const Home = (props) => {
   // Component States
   const [audio, setAudio] = useState(null);
   const [summary, setSummary] = useState(null);
+  const [isLoading, setIsLoading] = useState(false); 
 
   // Setup Component
   useEffect(() => {
@@ -26,21 +36,23 @@ const Home = (props) => {
   const handleAudioUploadClick = () => {
     inputFile.current.click();
   }
-  const handleOnChange = (event) => {
+  const handleOnChange = async (event) => {
+    setIsLoading(true);
     console.log(event.target.files);
     setAudio(URL.createObjectURL(event.target.files[0]));
 
     var formData = new FormData();
     formData.append("file", event.target.files[0]);
     console.log(formData.get('file'));
-    DataService.Predict(formData)
+    await DataService.Predict(formData)
       .then(function (response) {
         console.log('DataService Predict response');
         console.log(response.data);
         setSummary(response.data);
-      })
+      }); 
+    setIsLoading(false);
   }
-  console.log({ audio });
+
   return (
     <div className={classes.root}>
       <main className={classes.main}>
@@ -60,7 +72,7 @@ const Home = (props) => {
               </div>
             </Grid>
             <Grid item xs={6}>
-              {summary && summary.summary}
+              {isLoading ? <div>Processing</div> : <SummaryText summary={summary} />}
             </Grid>
           </Grid>
         </Container>
