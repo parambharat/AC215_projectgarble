@@ -19,7 +19,7 @@ const Footer = (props) => {
     return (
         <div className={classes.root}>
             <Typography align='center'>
-                Mushroom Identifier App
+              Audio Summarizer App
             </Typography>
 
         </div>

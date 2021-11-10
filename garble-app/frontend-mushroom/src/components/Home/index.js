@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { withStyles } from '@material-ui/core';
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 import DataService from "../../services/DataService";
 import styles from './styles';
@@ -11,7 +12,7 @@ const SummaryText = ({summary}) => {
   if (summary) { 
     return <div>{summary.summary}</div>
   } else { 
-    return <div>No audio file uploaded yet.</div>
+    return <div style={{marginLeft: 'auto', marginRight: 'auto', width: '13rem'}}>No audio file uploaded yet.</div>
   }
 }
 
@@ -59,6 +60,7 @@ const Home = (props) => {
         <Container maxWidth="md" className={classes.container}>
           <Grid container spacing={2}>
             <Grid item xs={6}>
+              <h3 className={classes.centerElement}>Audio</h3>
               <div className={classes.dropzone} onClick={() => handleAudioUploadClick()}>
                 <input
                   type="file"
@@ -72,7 +74,8 @@ const Home = (props) => {
               </div>
             </Grid>
             <Grid item xs={6}>
-              {isLoading ? <div>Processing</div> : <SummaryText summary={summary} />}
+              <h3 className={classes.centerElement}>Summary</h3>
+              {isLoading ? <div className={classes.centerElement}><CircularProgress/></div>: <SummaryText summary={summary} />}
             </Grid>
           </Grid>
         </Container>
