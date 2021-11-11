@@ -9,7 +9,7 @@ summarization_pipeline = pipeline(
 )
 
 
-def make_prediction(text):
+def make_prediction(text: str) -> Dict[str, str]:
     """
     Makes a prediction using the model
     """

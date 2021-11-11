@@ -1,4 +1,3 @@
-import io
 import os
 import pathlib
 from tempfile import TemporaryDirectory
@@ -6,10 +5,12 @@ from tempfile import TemporaryDirectory
 import ffmpeg
 
 # Imports the Google Cloud client library
-from google.cloud import speech
-
+from google.cloud import speech, storage
 
 # Instantiates a client
+gcp_project = "AC215_projectgarble"
+bucket_name = "ac215-project-garble-bucket"
+audio_files = "garble_audio"
 
 
 def transcribe_audio_file(audio_path):
@@ -24,15 +25,22 @@ def transcribe_audio_file(audio_path):
         stream = ffmpeg.output(stream, flac_path)
         ffmpeg.run(stream)
 
-        with io.open(flac_path, "rb") as audio_file:
-            content = audio_file.read()
+        print("uploading file")
+        storage_client = storage.Client(project=gcp_project)
+        bucket = storage_client.bucket(bucket_name)
+        destination_blob_name = f"{audio_files}/audio.flac"
+        blob = bucket.blob(destination_blob_name)
+        blob.upload_from_filename(flac_path)
+        print("File {} uploaded to {}.".format(flac_path, destination_blob_name))
 
         # Transcribe
-        audio = speech.RecognitionAudio(content=content)
-        config = speech.RecognitionConfig(language_code="en-US", audio_channel_count=1)
+        audio = speech.RecognitionAudio(
+            uri=f"gs://{bucket_name}/{audio_files}/audio.flac"
+        )
+        config = speech.RecognitionConfig(language_code="en-US")
         operation = client.long_running_recognize(config=config, audio=audio)
         response = operation.result(timeout=180)
         for result in response.results:
             transcript = result.alternatives[0].transcript
-            if transcript:
-                return transcript
+        if transcript:
+            return transcript
