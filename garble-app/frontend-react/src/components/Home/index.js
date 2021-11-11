@@ -11,7 +11,11 @@ const SummaryText = ({summary}) => {
   if (summary) { 
     return <div>{summary.summary}</div>
   } else { 
-    return <div style={{marginLeft: 'auto', marginRight: 'auto', width: '13rem'}}>2. Get short summary of audio.</div>
+    return (
+      <div style={{marginLeft: 'auto', marginRight: 'auto', marginTop: '2.5rem', width: '13rem'}}>
+        2. Get short summary of audio.
+      </div>
+    )
   }
 }
 
