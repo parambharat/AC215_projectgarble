@@ -20,8 +20,8 @@
 
         #loader {
         border: 16px solid #f3f3f3;
-        border-radius: 50%;
         display:none;
+        border-radius: 50%;
         border-top: 16px solid #3498db;
         width: 120px;
         height: 120px;
@@ -105,10 +105,10 @@
 
     <!-- Content -->
     <br><br>
- <label for="audioFileChooser">Upload an audio file: </label><br><br>
-  <input  id="input_file" type="file" onchange="readFile(this.files);">
+ <label text-align: center; for="audioFileChooser">Upload an audio file: </label><br><br>
+  <input text-align: center; id="input_file" type="file" onchange="readFile(this.files);">
   <br><br> <br><br>
-  <div id=loader></div>
+  <div text-align: center; id="loader"></div>
   <div>
     <header class="mdc-top-app-bar" style="align-items: center;position: relative;">
         <div class="mdc-top-app-bar__row" style="max-width: 300px;">
@@ -141,17 +141,10 @@
     var input_file_view = document.getElementById('input_file_view');
 
 
-	function readFile22(files) {
-		//var fileReader = new FileReader();
-			//fileReader.readAsArrayBuffer(files[0]);
-            upload_file(files)
-			//fileReader.onload = function(e) {
-			//	playAudioFile(e.target.result);
-                //upload_file()
-				alert(("Filename: '" + files[0].name + "'"), ( "(" + ((Math.floor(files[0].size/1024/1024*100))/100) + " MB)" ));
-			//}
+	function readFileQ(files) {
+		document.querySelector("#loader").style.display="inline-block";
 	}
-	f
+	
 
     function readFile(files) {
         //alert("Hi")
@@ -167,7 +160,7 @@
         var file_to_upload = input_file.files[0];
        // alert(file_to_upload)
         //$('.loader').show().spin();
-        document.querySelector("#loader").style.visibility="visible";
+        document.querySelector("#loader").style.display="inline-block";
         // Post the image to the /predict API
         var formData = new FormData();
         formData.append("file", input_file.files[0]);
@@ -181,7 +174,7 @@
             //alert(prediction_results);
 
             // Display the results
-            //$('.loader').hide().empty();
+            document.querySelector("#loader").style.display="none";
             prediction_label.innerHTML = prediction_results["summary"];
 
         });
