@@ -154,9 +154,9 @@
 	f
 
     function readFile(files) {
-        alert("Hi")
+        //alert("Hi")
          // Clear
-        alert("Hi")
+        //alert("Hi")
         var fileReader = new FileReader();
 		fileReader.readAsArrayBuffer(files[0]);
 		fileReader.onload = function(e) {
@@ -165,7 +165,7 @@
 			}
         // Read the uploaded file and display it
         var file_to_upload = input_file.files[0];
-        alert(file_to_upload)
+       // alert(file_to_upload)
         //$('.loader').show().spin();
         document.querySelector("#loader").style.visibility="visible";
         // Post the image to the /predict API
@@ -178,7 +178,7 @@
         }).then(function (response) {
             var prediction_results = response.data;
             console.log(prediction_results);
-            alert(prediction_results);
+            //alert(prediction_results);
 
             // Display the results
             //$('.loader').hide().empty();
