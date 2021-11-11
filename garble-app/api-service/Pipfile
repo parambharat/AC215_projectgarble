@@ -20,6 +20,7 @@ torch = { version = "*", index = "pytorch" }
 transformers = "*"
 tokenizers = "*"
 sentencepiece = "*"
+google-cloud-storage = "*"
 
 [requires]
 python_version = "3.8"
