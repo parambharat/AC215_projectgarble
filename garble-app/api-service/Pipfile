@@ -1,7 +1,12 @@
 [[source]]
-name = "pypi"
 url = "https://pypi.org/simple"
 verify_ssl = true
+name = "pypi"
+
+[[source]]
+name = "pytorch"
+url = "https://download.pytorch.org/whl/cpu/torch_stable.html"
+verify_ssl = false
 
 [dev-packages]
 
@@ -11,7 +16,10 @@ fastapi = "*"
 google-cloud-speech = "*"
 ffmpeg-python = "*"
 python-multipart = "*"
+torch = { version = "*", index = "pytorch" }
 transformers = "*"
+tokenizers = "*"
+sentencepiece = "*"
 
 [requires]
 python_version = "3.8"
