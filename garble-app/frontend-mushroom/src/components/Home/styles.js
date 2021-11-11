@@ -21,6 +21,7 @@ const styles = theme => ({
         flexDirection: "column",
         alignItems: "center",
         margin: "20px",
+        padding: "20px",
         borderWidth: "2px",
         borderRadius: "2px",
         borderColor: "#cccccc",
@@ -47,6 +48,12 @@ const styles = theme => ({
     },
     poisonous: {
         color: "#de2d26",
+    },
+    centerElement: { 
+      marginLeft: 'auto', 
+      marginRight: 'auto', 
+      width: '50%',
+      textAlign: 'center',
     },
 });
 
