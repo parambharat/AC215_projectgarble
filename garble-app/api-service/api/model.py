@@ -14,5 +14,6 @@ def make_prediction(text: str) -> Dict[str, str]:
     Makes a prediction using the model
     """
     summary = summarization_pipeline(text)[0]["summary_text"]
+    summary = summary.split("---")[0]
     print(summary)
     return {"summary": summary}
