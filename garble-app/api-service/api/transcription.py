@@ -29,7 +29,7 @@ def transcribe_audio_file(audio_path):
 
         # Transcribe
         audio = speech.RecognitionAudio(content=content)
-        config = speech.RecognitionConfig(language_code="en-US")
+        config = speech.RecognitionConfig(language_code="en-US", audio_channel_count=1)
         operation = client.long_running_recognize(config=config, audio=audio)
         response = operation.result(timeout=180)
         for result in response.results:

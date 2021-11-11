@@ -15,5 +15,6 @@ def make_prediction(text):
     """
     print(summarization_pipeline(text)[0])
     summary = summarization_pipeline(text)[0]['summary_text']
+    summary = summary.split('---')[0]
     
     return {"summary": summary}

@@ -37,7 +37,9 @@ async def predict(file: bytes = File(...)):
 
         # transcribe audio file
         transcription_results = transcription.transcribe_audio_file(audio_path)
+        print('Transcription:', transcription_results)
         # Make prediction
         prediction_results = model.make_prediction(transcription_results)
+        print('Summary:', prediction_results)
 
     return prediction_results
