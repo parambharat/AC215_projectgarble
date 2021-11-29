@@ -43,3 +43,22 @@ async def predict(file: bytes = File(...)):
         print('Summary:', prediction_results)
 
     return prediction_results
+
+@app.post("/apipredict")
+async def predict(file: bytes = File(...)):
+    print("predict file:", len(file), type(file))
+
+    # Save the image
+    with TemporaryDirectory() as audio_dir:
+        audio_path = os.path.join(audio_dir, "test.mp3")
+        with open(audio_path, "wb") as output:
+            output.write(file)
+
+        # transcribe audio file
+        transcription_results = transcription.transcribe_audio_file(audio_path)
+        print('Transcription:', transcription_results)
+        # Make prediction
+        prediction_results = model.make_prediction(transcription_results)
+        print('Summary:', prediction_results)
+
+    return prediction_results
