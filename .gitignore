@@ -131,3 +131,7 @@ dmypy.json
 /.idea/
 /datasets/
 /models/
+
+# Garble-app secrets and persistent-folder
+/garble-app/persistent-folder
+/garble-app/secrets
