@@ -8,7 +8,7 @@ In this project, we setup 3 containers:
 
 The following container architecture is implemented:
 
-![Garble App setup](./images/app_diagram.png)
+![Garble App setup](../../images/app_diagram.png)
 
 **See `garble-app/depoyment` directory for all deployment scripts**
 
@@ -29,27 +29,27 @@ We use ansible to create and deploy the app into a Kubernetes Cluster
 ```
 ansible-playbook deploy-k8s-cluster.yml -i inventory.yml --extra-vars cluster_state=present
 ```
-![Kubernetes setup 1](./images/kubernetesdep-1.png)
+![Kubernetes setup 1](../../images/kubernetesdep-1.png)
 
 ### Creation of cluster
 
-![Kubernetes setup 2](./images/kubecluster.png)
+![Kubernetes setup 2](../../images/kubecluster.png)
 
 ### Creation of Nodes
 
-![Kubernetes setup 3](./images/kubenodes.png)
+![Kubernetes setup 3](../../images/kubenodes.png)
 
 ### Node details
 
-![Kubernetes setup](./images/kubenodedetails.png)
+![Kubernetes setup](../../images/kubenodedetails.png)
 
 ### Pod status
 
-![Kubernetes setup](./images/kubstatus.png)
+![Kubernetes setup](../../images/kubstatus.png)
 
 ## Services
 
-![Kubernetes setup](./images/kubeservices.png)
+![Kubernetes setup](../../images/kubeservices.png)
 
 
 
@@ -63,9 +63,9 @@ ansible-playbook deploy-k8s-cluster.yml -i inventory.yml --extra-vars cluster_st
 
 ### Garble Application 
 
-![Kubernetes setup](./images/kubeappln.png)
+![Kubernetes setup](../../images/kubeappln.png)
 
 ### Garble Application Resuslts
 
 
-![Kubernetes setup](./images/kubeapplnresults.png)
+![Kubernetes setup](../../images/kubeapplnresults.png)
