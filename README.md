@@ -199,6 +199,8 @@ and add set these environment variables when starting the docker container
 
 - Go to the page `http://localhost:3000`
 
+![Kubernetes setup 1](./images/localhost3000.png)
+
 ## Garble App - Deployment to Google Cloud platform
 
 
@@ -344,3 +346,8 @@ ansible-playbook deploy-k8s-cluster.yml -i inventory.yml --extra-vars cluster_st
 ### Garble Application 
 
 ![Kubernetes setup](./images/kubeappln.png)
+
+### Garble Application Resuslts
+
+
+![Kubernetes setup](./images/kubeapplnresults.png)
