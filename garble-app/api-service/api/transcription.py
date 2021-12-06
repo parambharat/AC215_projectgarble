@@ -40,7 +40,8 @@ def transcribe_audio_file(audio_path):
         config = speech.RecognitionConfig(language_code="en-US")
         operation = client.long_running_recognize(config=config, audio=audio)
         response = operation.result(timeout=180)
+        transcript = ''
         for result in response.results:
-            transcript = result.alternatives[0].transcript
+            transcript += result.alternatives[0].transcript
         if transcript:
             return transcript

@@ -25,9 +25,9 @@ async def get_index():
     return {"message": "Welcome to the API Service"}
 
 
-@app.post("/predict")
-async def predict(file: bytes = File(...)):
-    print("predict file:", len(file), type(file))
+@app.post("/transcribe")
+async def transcribe(file: bytes = File(...)):
+    print("Audio file:", len(file), type(file))
 
     # Save the image
     with TemporaryDirectory() as audio_dir:
@@ -38,8 +38,11 @@ async def predict(file: bytes = File(...)):
         # transcribe audio file
         transcription_results = transcription.transcribe_audio_file(audio_path)
         print('Transcription:', transcription_results)
-        # Make prediction
-        prediction_results = model.make_prediction(transcription_results)
-        print('Summary:', prediction_results)
+    return transcription_results
 
-    return prediction_results
+@app.post("/summarize")
+async def summarize(transcription):
+  summary = model.make_prediction(transcription)
+  print('Summary:', summary)
+  return summary
+    
