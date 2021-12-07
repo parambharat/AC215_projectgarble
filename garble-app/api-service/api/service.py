@@ -3,7 +3,7 @@ from tempfile import TemporaryDirectory
 
 import api.model as model
 import api.transcription as transcription
-from fastapi import FastAPI, File
+from fastapi import FastAPI, File, Request
 from starlette.middleware.cors import CORSMiddleware
 
 # Setup FastAPI app
@@ -41,8 +41,10 @@ async def transcribe(file: bytes = File(...)):
     return transcription_results
 
 @app.post("/summarize")
-async def summarize(transcription):
-  summary = model.make_prediction(transcription)
+async def summarize(request: Request):
+  data = await request.json()
+  transcript = data['transcript']
+  summary = model.make_prediction(transcript)
   print('Summary:', summary)
   return summary
     
