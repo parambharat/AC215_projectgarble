@@ -35,6 +35,7 @@ def download_model_dir(
         if not os.path.isfile(dst_file_name):
             blob.download_to_filename(dst_file_name)
 
+download_model_dir()
 
 class LEDTokenizerFixed(LEDTokenizer):
     def _pad(
