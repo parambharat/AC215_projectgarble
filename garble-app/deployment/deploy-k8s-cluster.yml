@@ -4,10 +4,10 @@
   gather_facts: false
 
   vars:
-    cluster_name: "garble-app-cluster"
-    machine_type: "n1-standard-1"
+    cluster_name: "garble-app-cluster-8"
+    machine_type: "n1-standard-8"
     machine_disk_size: 30
-    initial_node_count: 2
+    initial_node_count: 1
 
   tasks:
   - name: "Create a GKE cluster"
