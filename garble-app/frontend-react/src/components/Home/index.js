@@ -109,7 +109,6 @@ const Home = (props) => {
 
   // Component States
   const [transcript, setTranscript] = useState(null);
-  const [isLoading, setIsLoading] = useState(false); 
 
   // Setup Component
   useEffect(() => {
