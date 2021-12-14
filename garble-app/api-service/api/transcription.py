@@ -39,7 +39,7 @@ def transcribe_audio_file(audio_path):
         audio = speech.RecognitionAudio(
             uri=f"gs://{bucket_name}/{audio_files}/audio.flac"
         )
-        config = speech.RecognitionConfig(language_code="en-US", enable_automatic_punctuation=True)
+        config = speech.RecognitionConfig(language_code="en-US", enable_automatic_punctuation=True, model="video")
         logging.debug("Calling speech recognition client")
         operation = client.long_running_recognize(config=config, audio=audio)
         response = operation.result(timeout=180)
