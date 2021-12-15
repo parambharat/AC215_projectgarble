@@ -44,7 +44,8 @@ ADD --chown=app:app Pipfile Pipfile.lock /app/
 RUN pipenv sync
 
 ENV GOOGLE_APPLICATION_CREDENTIALS=/secrets/garble-app.json
-
+ENV GCP_PROJECT=sunlit-unison-328818
+ENV GCP_ZONE=us-central1-a
 # Add the rest of the source code. This is done last so we don't invalidate all
 # layers when we change a line of code.
 ADD --chown=app:app . /app

@@ -11,10 +11,7 @@ import Divider from '@material-ui/core/Divider';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import Menu from '@material-ui/core/Menu';
-import MenuItem from '@material-ui/core/MenuItem';
 import IconButton from '@material-ui/core/IconButton';
-import AccountCircle from '@material-ui/icons/AccountCircle';
 import MenuIcon from '@material-ui/icons/Menu';
 import Icon from '@material-ui/core/Icon';
 import { Link } from 'react-router-dom';
@@ -30,17 +27,9 @@ const Header = (props) => {
 
     // State
     const [drawerOpen, setDrawerOpen] = useState(false);
-    const [settingsMenuOpen, setSettingsMenuOpen] = useState(false);
-    const [settingsMenuAnchorEl, setSettingsMenuAnchorEl] = useState(null);
 
     const toggleDrawer = (open) => () => {
         setDrawerOpen(open)
-    };
-    const openSettingsMenu = (event) => {
-        setSettingsMenuAnchorEl(event.currentTarget);
-    };
-    const closeSettingsMenu = (event) => {
-        setSettingsMenuAnchorEl(null);
     };
 
     return (
@@ -64,14 +53,6 @@ const Header = (props) => {
                             <Icon>home</Icon>
                             <Typography variant="caption">&nbsp;Home</Typography>
                         </IconButton>
-                        <IconButton color="inherit" component={Link} to="/currentmodel">
-                            <Icon>model_training</Icon>
-                            <Typography variant="caption">&nbsp;Model</Typography>
-                        </IconButton>
-                        {/* <IconButton color="inherit">
-                            <Icon>login</Icon>
-                            <Typography variant="caption">&nbsp;Login</Typography>
-                        </IconButton> */}
                     </div>
                 </Toolbar>
             </AppBar>
@@ -90,12 +71,6 @@ const Header = (props) => {
                             </ListItem>
                         </List>
                         <Divider />
-                        <List>
-                            <ListItem button key='menuitem12' component={Link} to="/currentmodel">
-                                <ListItemIcon><Icon>star</Icon></ListItemIcon>
-                                <ListItemText primary='Current Model' />
-                            </ListItem>
-                        </List>
                     </div>
                 </div>
             </Drawer>

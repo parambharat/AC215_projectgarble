@@ -19,27 +19,56 @@ const SummaryText = ({summary}) => {
   }
 }
 
-const Home = (props) => {
-  const { classes } = props;
 
-  console.log("================================== Home ======================================");
+const Summary = ({transcript, classes}) => {
+  const [isLoading, setIsLoading] = useState(false);
+  const [summary, setSummary] = useState(null);
+
+  const handleOnChange = async (transcript) => {
+    setIsLoading(true);
+    await DataService.Summarize(transcript)
+      .then(function (response) {
+        setSummary(response.data);
+      });
+    setIsLoading(false);
+  }
+
+
+  useEffect(() => {
+    if (transcript) {
+      console.log({transcript});
+      handleOnChange(transcript);
+    }
+  }, [transcript]);
+
+
+  return (
+    <div>
+      {isLoading ? <div className={classes.centerElement}><CircularProgress/></div>: <SummaryText summary={summary} />}
+    </div>
+  )
+
+
+}
+const TranscriptText = ({transcript, classes}) => { 
+  if (transcript) { 
+    return <div>{transcript}</div>
+  } else { 
+    return <div className={classes.help}>1. Click to upload audio file.</div>
+  }
+}
+
+const AudioTranscript = ({classes, setTranscript, transcript}) => {
+  const [audio, setAudio] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
 
   const inputFile = useRef(null);
-
-  // Component States
-  const [audio, setAudio] = useState(null);
-  const [summary, setSummary] = useState(null);
-  const [isLoading, setIsLoading] = useState(false); 
-
-  // Setup Component
-  useEffect(() => {
-
-  }, []);
 
   // Handlers
   const handleAudioUploadClick = () => {
     inputFile.current.click();
-  }
+  }; 
+
   const handleOnChange = async (event) => {
     setIsLoading(true);
     console.log(event.target.files);
@@ -47,12 +76,44 @@ const Home = (props) => {
 
     var formData = new FormData();
     formData.append("file", event.target.files[0]);
-    await DataService.Predict(formData)
+    await DataService.Transcribe(formData)
       .then(function (response) {
-        setSummary(response.data);
+        setTranscript(response.data);
       }); 
     setIsLoading(false);
   }
+
+  return ( 
+    <div className={classes.dropzone} onClick={() => handleAudioUploadClick()}>
+      <input
+        type="file"
+        accept="audio/*"
+        className={classes.fileInput}
+        ref={inputFile}
+        onChange={(event) => handleOnChange(event)}
+      />
+      <div>{audio && <audio controls src={audio} />}</div>
+      {isLoading 
+        ? <div className={classes.centerElement}><CircularProgress/><div>Transcribing...</div></div>
+        : <TranscriptText transcript={transcript} classes={classes}/>
+      }
+    </div>
+  )
+}
+
+
+const Home = (props) => {
+  const { classes } = props;
+
+  console.log("================================== Home ======================================");
+
+  // Component States
+  const [transcript, setTranscript] = useState(null);
+
+  // Setup Component
+  useEffect(() => {
+
+  }, []);
 
   return (
     <div className={classes.root}>
@@ -61,21 +122,11 @@ const Home = (props) => {
           <Grid container spacing={2}>
             <Grid item xs={6}>
               <h3 className={classes.centerElement}>Audio</h3>
-              <div className={classes.dropzone} onClick={() => handleAudioUploadClick()}>
-                <input
-                  type="file"
-                  accept="audio/*"
-                  className={classes.fileInput}
-                  ref={inputFile}
-                  onChange={(event) => handleOnChange(event)}
-                />
-                <div>{audio && <audio controls src={audio} />}</div>
-                <div className={classes.help}>1. Click to upload audio file.</div>
-              </div>
+              <AudioTranscript classes={classes} setTranscript={setTranscript} transcript={transcript}/>
             </Grid>
             <Grid item xs={6}>
               <h3 className={classes.centerElement}>Summary</h3>
-              {isLoading ? <div className={classes.centerElement}><CircularProgress/></div>: <SummaryText summary={summary} />}
+              <Summary classes={classes} transcript={transcript}/>
             </Grid>
           </Grid>
         </Container>
