@@ -1,6 +1,18 @@
 # Garble: Audio Summarizer- Setup & Code Organization
 
-In this project, we setup 3 containers:
+## Introduction
+This app aims to summarize speech audio and creates a summary of the audio.
+
+The code is organized into a few sections:
+
+- [garble-app](https://github.com/parambharat/AC215_projectgarble/tree/main/garble-app):  contains all deployement code and docker containers etc.
+- [notebooks](https://github.com/parambharat/AC215_projectgarble/tree/main/notebooks): contains all notebooks used for EDA and model training.
+- [submissions](https://github.com/parambharat/AC215_projectgarble/tree/main/submissions): contains submissions for each milestone
+- [src](https://github.com/parambharat/AC215_projectgarble/tree/main/src): contains all code and utilities used in the project.
+
+## Deployment
+
+For deployment of this app, we set up 3 containers:
 
 * api-service
 * frontend-react
