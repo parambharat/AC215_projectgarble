@@ -4,7 +4,7 @@
 
 - [10 minute group presentation (demo of your deployed cluster, fully finished product)](https://youtu.be/Ge1WJoo0CRc) 
 
-- [Completed Project Outline Slides / Document](https://github.com/parambharat/AC215_projectgarble/tree/main/submissions/milestone4_projectgarble/)
+- [Completed Project Outline Slides / Document](https://github.com/parambharat/AC215_projectgarble/blob/main/submissions/milestone4_projectgarble/Project%20Garble%20-%20Milestone%204%20.pptx)
 
 - [Link to complete code repo ](https://github.com/parambharat/AC215_projectgarble/tree/main/)
 
